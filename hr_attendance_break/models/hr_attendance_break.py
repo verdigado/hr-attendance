@@ -25,16 +25,16 @@ class HrAttendanceBreak(models.Model):
                 valid &= this.attendance_id.check_in <= this.begin
             if this.attendance_id.check_out and this.end:
                 valid &= this.attendance_id.check_out >= this.end
-            if valid and this.begin and this.end:
-                valid &= not bool(
-                    self.search_count(
-                        [
-                            ("begin", "<", this.end),
-                            ("end", ">", this.begin),
-                            ("id", "not in", this.ids),
-                        ]
-                    )
-                )
+            # if valid and this.begin and this.end:
+            #     valid &= not bool(
+            #         self.search_count(
+            #             [
+            #                 ("begin", "<", this.end),
+            #                 ("end", ">", this.begin),
+            #                 ("id", "not in", this.ids),
+            #             ]
+            #         )
+            #     )
             if not valid:
                 raise exceptions.ValidationError(
                     _(
