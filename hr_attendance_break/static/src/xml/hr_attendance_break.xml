@@ -27,10 +27,13 @@
                 title="End break"
             />
         </t>
-        <t t-jquery="a + h3.text-muted" t-operation="append">
-            <span t-if="checked_in">or to <b
-                    t-if="widget.break_state == 'no_break'"
-                >take a break</b><b t-else="">return from break</b></span>
+        <t t-jquery="a + h3.text-muted" t-operation="replace">
+            <h3 class="mt0 mb0 text-muted">Click to
+                <b t-if="checked_in and widget.break_state == 'no_break'">check out or to</b>
+                <b t-if="!checked_in and widget.break_state == 'no_break'">check in</b>
+                <span t-if="checked_in"><b t-if="widget.break_state == 'no_break'"
+                    >take a break</b><b t-else="">return from break</b></span>
+            </h3>
         </t>
     </t>
 </template>
